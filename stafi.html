@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Academic Staff</title>
+  <link rel="stylesheet" href="styles.css">
+  <style>
+    body {
+      font-family: 'Arial', sans-serif;
+      background-color: #e0f7fa;
+      color: #696b6c;
+      margin: 0;
+      padding: 0;
+    }
+
+    .staff-section {
+      margin: 40px auto;
+      max-width: 800px;
+      background-color: white;
+      padding: 20px;
+      box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2), 0 4px 20px rgba(0, 184, 255, 0.3);
+      border-radius: 8px;
+    }
+
+    h2 {
+      color: #00b6ff;
+      font-size: 2em;
+      margin-bottom: 15px;
+    }
+
+    .professor {
+      margin: 10px 0;
+      padding: 10px;
+      border-bottom: 1px solid #ccc;
+      position: relative;
+      transition: background-color 0.3s ease-in-out;
+    }
+
+    .professor:hover {
+      background-color: #f0f0f0;
+    }
+
+    .photo {
+      width: 100px;
+      height: 100px;
+      border-radius: 8px;
+      margin-top: 10px;
+      display: none;
+      transition: opacity 0.3s ease;
+    }
+
+    .professor:hover .photo {
+      display: block;
+      opacity: 1;
+    }
+
+    .description {
+      color: #555;
+      font-size: 0.9em;
+      margin-top: 5px;
+      display: block;
+      width: 100%;
+    }
+
+    footer {
+      text-align: center;
+      padding: 20px;
+      background-color: #3a8abc;
+      color: white;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- German Language Section -->
+  <section class="staff-section" id="prg1">
+    <h2>German Language</h2>
+    <div class="professor">
+      <h3>Ene As</h3>
+      <p class="description">Description: Known professor for his innovative methods in teaching German.</p>
+      <img src="stafman.png" alt="Ene As" class="photo">
+    </div>
+    <div class="professor">
+      <h3>Alta Aliu</h3>
+      <p class="description">Description: Expert in German language analysis and grammar.</p>
+      <img src="stafwomen.png" alt="Alta Aliu" class="photo">
+    </div>
+    <div class="professor">
+      <h3>Eida Rashiti</h3>
+      <p class="description">Description: Passionate German language teacher with extensive experience.</p>
+      <img src="stafwomen.png" alt="Eida Rashiti" class="photo">
+    </div>
+    <div class="professor">
+      <h3>Anita Maloku</h3>
+      <p class="description">Description: Specialist in using technology for language teaching.</p>
+      <img src="stafwomen.png" alt="Anita Maloku" class="photo">
+    </div>
+    <div class="professor">
+      <h3>Leo Fazliu</h3>
+      <p class="description">Description: As a German studies student, I have developed a deep love for German culture and history, making every lesson a new adventure.</p>
+      <img src="stafman.png" alt="Leo Fazliu" class="photo">
+    </div>
+    <div class="professor">
+      <h3>Fati Leo</h3>
+      <p class="description">Description: Deep knowledge of German culture and linguistics.</p>
+      <img src="stafman.png" alt="Fati Leo" class="photo">
+    </div>
+    <div class="professor">
+      <h3>Rinesa Abu</h3>
+      <p class="description">Description: Engaged teacher with a creative approach to teaching.</p>
+      <img src="stafwomen.png" alt="Rinesa Abu" class="photo">
+    </div>
+    <div class="professor">
+      <h3>Rinesa Mali</h3>
+      <p class="description">Description: Expert in translation and interpretation of German.</p>
+      <img src="stafwomen.png" alt="Rinesa Mali" class="photo">
+    </div>
+    <div class="professor">
+      <h3>Are Tori</h3>
+      <p class="description">Description: Dedicated to teaching and developing communication skills.</p>
+      <img src="stafwomen.png" alt="Are Tori" class="photo">
+    </div>
+  </section>
+
+  <!-- English Language Section -->
+  <section class="staff-section" id="prg2">
+    <h2>English Language</h2>
+    <div class="professor">
+      <h3>Eri Belegu</h3>
+      <p class="description">Description: Talented teacher with international experience in teaching English.</p>
+      <img src="stafman.png" alt="Eri Belegu" class="photo">
+    </div>
+    <div class="professor">
+      <h3>Lore Sali</h3>
+      <p class="description">Description: Expert in English grammar and teaching methodology.</p>
+      <img src="stafman.png" alt="Lore Sali" class="photo">
+    </div>
+  </section>
+
+  <!-- French Language Section -->
+  <section class="staff-section" id="prg3">
+    <h2>French Language</h2>
+    <div class="professor">
+      <h3>Misa Aliu</h3>
+      <p class="description">Description: Engaged teacher with a passion for French culture.</p>
+      <img src="stafwomen.png" alt="Filloreta Aliu" class="photo">
+    </div>
+  </section>
+  
+  <!-- Spanish Language Section -->
+  <section class="staff-section" id="prg4">
+    <h2>Spanish Language</h2>
+    <div class="professor">
+      <h3>Mia Elo</h3>
+      <p class="description">Description: Excellent knowledge of Spanish language and culture.</p>
+      <img src="stafman.png" alt="Mia Elo" class="photo">
+    </div>
+  </section>
+
+  <!-- Programming Section -->
+  <section class="staff-section" id="prg5">
+    <h2>Programming</h2>
+    <div class="professor">
+      <h3>Arni ES</h3>
+      <p class="description">Graduate in Computer Science and Software Engineering:
+        </p>
+      <img src="stafwomen.png" alt="Arni Es" class="photo">
+    </div>
+    <div class="professor">
+      <h3>James Erdo</h3>
+      <p class="description">Description: Experienced teacher in information technologies.</p>
+      <img src="stafman.png" alt="Bledar Erdo" class="photo">
+    </div>
+  </section>
+
+  <!-- Graphic Design Section -->
+  <section class="staff-section" id="prg6">
+    <h2>Graphic Design</h2>
+    <div class="professor">
+      <h3>Ero Lat</h3>
+      <p class="description">Description: Designer with a keen eye for aesthetics and visual art.</p>
+      <img src="stafman.png" alt="Ero Lat" class="photo">
+    </div>
+    <div class="professor">
+      <h3>Pedri Aliu</h3>
+      <p class="description">Description: Specialist in designing and creating visual materials.</p>
+      <img src="stafman.png" alt="Lum Gashi" class="photo">
+    </div>
+  </section>
+

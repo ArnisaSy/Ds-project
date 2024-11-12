@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Administration</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #e0f7fa; /* Light cyan background */
+            color: gray;
+            margin: 0;
+            padding: 0;
+        }
+
+        .navbar {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 10;
+            background-color: #00b6ff;
+            display: flex;
+            justify-content: flex-end; /* Align items to the right */
+            padding: 10px 15px; /* Adjusted padding */
+        }
+
+        .navbar-title {
+            color: white;
+            font-size: 24px;
+            font-weight: 700;
+            margin-right: auto; /* Push title to the left */
+        }
+
+        .navbar-menu {
+            list-style-type: none;
+            display: flex;
+            margin: 0; /* Remove default margin */
+            padding: 0; /* Remove default padding */
+        }
+
+        .navbar-menu li {
+            position: relative;
+        }
+
+        .navbar-menu a {
+            color: white;
+            text-decoration: none;
+            font-size: 16px;
+            padding: 10px 15px; /* Adjusted padding */
+            display: block;
+            border-radius: 4px;
+            transition: background-color 0.3s;
+        }
+
+        .navbar-menu a:hover {
+            background-color: #1E90FF;
+        }
+
+        /* Dropdown menu */
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            background-color: #00b6ff;
+            min-width: 160px;
+            z-index: 1;
+            left: 0; /* Align dropdown to the left */
+        }
+
+        .navbar-menu li:hover .dropdown-content {
+            display: block;
+        }
+
+        .dropdown-content a {
+            padding: 10px 15px; /* Adjusted padding */
+            text-decoration: none;
+            display: block;
+            color: white;
+        }
+
+        .dropdown-content a:hover {
+            background-color: #1E90FF;
+        }
+
+        /* Hamburger icon for mobile devices */
+        .icon {
+            display: none;
+            color: white;
+            font-size: 30px;
+            cursor: pointer;
+        }
+
+        /* Responsive Design */
+        @media screen and (max-width: 768px) {
+            .navbar-menu {
+                display: none; /* Hide by default */
+                flex-direction: column;
+                width: 100%;
+                position: absolute;
+                top: 60px; /* Adjust as needed */
+                left: 0;
+                background-color: #00b6ff;
+                transition: max-height 0.3s ease-out;
+                overflow: hidden;
+                max-height: 0; /* Initially hidden */
+                padding: 0; /* Remove padding */
+            }
+
+            .navbar-menu.responsive {
+                display: flex;
+                max-height: 400px; /* Adjust as necessary */
+            }
+
+            .icon {
+                display: block;
+            }
+        }
+
+        .staff-section {
+            margin: 80px auto; /* Adjusted for fixed navbar */
+            max-width: 800px;
+            background-color: white;
+            padding: 20px;
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2), 0 4px 20px rgba(0, 184, 255, 0.3);
+            border-radius: 8px;
+        }
+
+        h2 {
+            color: #00b6ff;
+            font-size: 2em;
+            margin-bottom: 15px;
+        }
+
+        .professor {
+            margin: 10px 0;
+            padding: 10px;
+            border-bottom: 1px solid #ccc;
+            position: relative;
+            transition: background-color 0.3s ease-in-out;
+        }
+
+        .professor:hover {
+            background-color: #f0f0f0;
+        }
+
+        .photo {
+            width: 100px; /* Adjust as needed */
+            height: 100px; /* Adjust as needed */
+            border-radius: 8px;
+            margin-top: 10px;
+            display: none; /* Hidden by default */
+            transition: opacity 0.3s ease;
+        }
+
+        .professor:hover .photo {
+            display: block; /* Show when hovered */
+            opacity: 1; /* Fully visible */
+        }
+
+        .description {
+            color: #555;
+            font-size: 0.9em;
+            margin-top: 5px;
+        }
+
+        footer {
+            text-align: center;
+            padding: 20px;
+            background-color: #3a8abc;
+            color: white;
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="navbar-title">Learn Courses</div>
+        <div class="navbar-container">
+            <ul class="navbar-menu" id="navbarMenu">
+                <li class="dropdown">
+                    <a href="#">Program</a>
+                    <div class="dropdown-content">
+                        <a href="programetlink.html">Linguistics</a>
+                        <a href="programetino.html">Innovation</a>
+                        <a href="programetHS.html">Social Space</a>
+                    </div>
+                </li>
+                <li class="dropdown">
+                    <a href="#">Staff</a>
+                    <div class="dropdown-content">
+                        <a href="bordi.html">Board</a>
+                        <a href="stafiadmns.html">Administrative Staff</a>
+                        <a href="stafi.html">Academic Staff</a>
+                    </div>
+                </li>
+                <li><a href="#Ngjarjet">Latest Events</a></li>
+                <li><a href="#test">Take a Test</a></li>
+                <li><a href="regjistrohu.html">Register</a></li>
+            </ul>
+            <a href="javascript:void(0);" class="icon" onclick="toggleMenu()">&#9776;</a>
+        </div>
+    </nav>
+    
+    <section class="staff-section" id="prg1">
+        <h2>Administration</h2>
+        <div class="professor">
+            <h3>Leon Ja</h3>
+            <p class="description">Description: Administrative Assistant</p>
+            <img src="stafwomen.pngon Ja" class="photo">
+        </div>
+        <div class="professor">
+            <h3>Vjollce Ha</h3>
+            <p class="description">Description: Administrative Assistant</p>
+            <img src="stafwomen.png" alt="Vjollce Ha" class="photo">
+        </div>
+        <div class="professor">
+            <h3>Donjete She</h3>
+            <p class="description">Description: Social Media Manager</p>
+            <img src="stafwomen.png" alt="Donjete She" class="photo">
+        </div>
+        <div class="professor">
+            <h3>Edone</h3>
+            <p class="description">Description: Intern</p>
+            <img src="stafwomen.png" alt="Edone" class="photo">
+        </div>
+        <div class="professor">
+            <h3>Egzon Je</h3>
+            <p class="description">Description: Intern</p>
+            <img src="stafman.png" alt="Egzon Je" class="photo">
+        </div>
+        <div class="professor">
+            <h3>Erza Lala</h3>
+            <p class="description">Description: Intern</p>
+            <img src="stafwomen.png" alt="Erza Lala" class="photo">
+        </div>
+    </section>
+    
+    <footer>
+        <p>&copy; 2024 Administration. All rights reserved.</p>
+    </footer>
+
+    <script>
+        function toggleMenu() {
+            var menu = document.getElementById("navbarMenu");
+            menu.classList.toggle("responsive");
+        }
+    </script>
+</body>
+</html>

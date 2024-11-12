@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Photo and Description Website</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+        body {
+            background-color: #121212;
+            color: #ffffff;
+            font-family: Arial, sans-serif;
+        }
+        header {
+            background-color: #333333;
+            color: #ffffff;
+            padding: 20px;
+            text-align: center;
+        }
+        .section {
+            display: flex;
+            margin: 20px 0;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+            background-color: #1e1e1e;
+            transition: transform 0.2s;
+        }
+        .section:hover {
+            transform: scale(1.02);
+        }
+        .section img {
+            border-radius: 15px 0 0 15px;
+            width: 150px;
+            height: auto;
+        }
+        .content {
+            padding: 20px;
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+        .btn-custom {
+            background-color: #6200ea;
+            color: #ffffff;
+            border: none;
+            border-radius: 25px;
+            padding: 10px 20px;
+            font-size: 16px;
+            margin-top: 10px;
+            text-align: center;
+            transition: background-color 0.3s;
+            align-self: flex-start;
+        }
+        .btn-custom:hover {
+            background-color: #3700b3;
+        }
+        footer {
+            background-color: #333333;
+            color: #ffffff;
+            text-align: center;
+            padding: 10px 0;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <h1>Welcome to Our Photo Gallery</h1>
+</header>
+
+<div class="container">
+    <div class="section">
+        <img src="gjermania.jpg" alt="Photo 1">
+        <div class="content">
+            <h2>German Language</h2>
+            <p>This is a description for photo 1. You can talk about its theme or the story behind it.</p>
+            <a href="regjistrohu.html" class="btn-custom">Register Now</a>
+        </div>
+    </div>
+
+    <div class="section">
+        <img src="england.jpg" alt="Photo 2">
+        <div class="content">
+            <h2>English Language</h2>
+            <p>Here you can provide a description for photo 2, a perfect chance to share more details.</p>
+            <a href="register.html" class="btn-custom">Register Now</a>
+        </div>
+    </div>
+
+    <div class="section">
+        <img src="programim.jpg" alt="Photo 3">
+        <div class="content">
+            <h2>Web Development</h2>
+            <p>The description for photo 3 can include important details or simply personal insights.</p>
+            <a href="register.html" class="btn-custom">Register Now</a>
+        </div>
+    </div>
+
+    <div class="section">
+        <img src="videoeditim.jpg" alt="Photo 4">
+        <div class="content">
+            <h2>Video Edit</h2>
+            <p>Explain here what photo 4 represents for you or your audience.</p>
+            <a href="register.html" class="btn-custom">Register Now</a>
+        </div>
+    </div>
+
+    <div class="section">
+        <img src="webdesing.jpg" alt="Photo 5">
+        <div class="content">
+            <h2>Web Design</h2>
+            <p>For photo 5, highlight any interesting detail that makes it unique.</p>
+            <a href="register.html" class="btn-custom">Register Now</a>
+        </div>
+    </div>
+
+    <div class="section">
+        <img src="Spanja.jpg" alt="Photo 6">
+        <div class="content">
+            <h2>Spanish Language</h2>
+            <p>Describe photo 6 and how it makes you feel. This is a chance to express yourself.</p>
+            <a href="register.html" class="btn-custom">Register Now</a>
+        </div>
+    </div>
+</div>
+
+<footer>
+    <p>&copy; Learn Courses.</p>
+</footer>
+
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.3/dist/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>

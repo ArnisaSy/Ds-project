@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Deutsch Test</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f8ff;
+            color: #333;
+            margin: 0;
+            padding: 20px;
+        }
+        h1 {
+            text-align: center;
+            color: #007acc;
+        }
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            border: 1px solid #007acc;
+            border-radius: 8px;
+            background-color: #ffffff;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+        .section {
+            margin-bottom: 20px;
+        }
+        .options {
+            list-style: none;
+            padding: 0;
+        }
+        .options li {
+            margin: 10px 0;
+        }
+        button {
+            background-color: #007acc;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #005fa3;
+        }
+        #timer {
+            text-align: center;
+            font-size: 24px;
+            color: #e63946;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h1>Deutsch Test</h1>
+    <div id="timer">15:00</div>
+    <div id="quizContainer"></div>
+    <button onclick="submitAnswers()">Test Beenden</button>
+</div>
+
+<script>
+    const quizData = [
+        { question: "Wie heißt du?", options: ["Ich bin 20.", "Ich heiße Anna.", "Ich komme aus Berlin.", "Ich mag Äpfel."], answer: 1 },
+        { question: "Wie alt bist du?", options: ["Ich arbeite hier.", "Ich bin 25 Jahre alt.", "Ich lese ein Buch.", "Ich mag Hunde."], answer: 1 },
+        { question: "Wo ist das Buch?", options: ["Es ist rot.", "Es ist auf dem Tisch.", "Ich habe es.", "Ich mag es."], answer: 1 },
+        { question: "Welche Farbe hat der Himmel?", options: ["Es ist ein Tier.", "Er ist blau.", "Es ist kalt.", "Es ist groß."], answer: 1 },
+        { question: "Magst du Pizza?", options: ["Ja, ich mag es.", "Ich gehe einkaufen.", "Es ist lecker.", "Ich habe zwei."], answer: 2 },
+        { question: "Was machst du gern?", options: ["Ich lese gern.", "Ich bin müde.", "Ich gehe ins Kino.", "Es ist kalt."], answer: 0 },
+        { question: "Woher kommst du?", options: ["Ich komme aus Spanien.", "Ich gehe nach Hause.", "Ich liebe es.", "Ich bin dort."], answer: 0 },
+        { question: "Was ist dein Lieblingsessen?", options: ["Ich mag Fisch.", "Es ist sonnig.", "Ich arbeite.", "Ich habe einen Hund."], answer: 0 },
+        { question: "Wie lange lernst du Deutsch?", options: ["Ich lerne seit einem Jahr.", "Ich bin müde.", "Ich gehe einkaufen.", "Ich mag Musik."], answer: 0 },
+        { question: "Kannst du schwimmen?", options: ["Ja, ich kann schwimmen.", "Ich lese ein Buch.", "Ich bin klein.", "Ich mag Kaffee."], answer: 0 },
+        { question: "Was hast du heute gemacht?", options: ["Ich habe gearbeitet.", "Ich gehe zum Markt.", "Ich mag Äpfel.", "Es ist Montag."], answer: 0 },
+        { question: "Wann hast du Geburtstag?", options: ["Im Januar.", "Ich habe einen Hund.", "Ich gehe ins Kino.", "Es ist kalt."], answer: 0 },
+        { question: "Was trinkst du gern?", options: ["Ich trinke Wasser.", "Es ist spät.", "Ich bin müde.", "Ich lese viel."], answer: 0 },
+        { question: "Hast du Geschwister?", options: ["Ja, ich habe einen Bruder.", "Ich arbeite hier.", "Ich mag Pizza.", "Ich bin 30 Jahre alt."], answer: 0 },
+        { question: "Was machst du am Wochenende?", options: ["Ich gehe spazieren.", "Ich bin Student.", "Ich mag Schokolade.", "Ich habe ein Auto."], answer: 0 },
+        { question: "Wie oft spielst du Fußball?", options: ["Ich spiele jeden Tag.", "Ich habe keine Zeit.", "Ich lese ein Buch.", "Ich mag Schwimmen."], answer: 0 },
+        { question: "Was sind deine Hobbys?", options: ["Ich spiele Gitarre.", "Ich bin 25 Jahre alt.", "Es ist kalt.", "Ich gehe zur Schule."], answer: 0 },
+        { question: "Wie viele Sprachen sprichst du?", options: ["Ich spreche drei Sprachen.", "Ich gehe nach Hause.", "Ich mag Hunde.", "Ich habe einen Freund."], answer: 0 },
+        { question: "Was ist dein Beruf?", options: ["Ich bin Lehrer.", "Ich liebe es.", "Es ist kalt.", "Ich habe eine Katze."], answer: 0 },
+        { question: "Wie spät ist es?", options: ["Es ist 3 Uhr.", "Ich gehe ins Kino.", "Ich mag Musik.", "Es ist Montag."], answer: 0 },
+        { question: "Wo arbeitest du?", options: ["Ich arbeite in einer Bank.", "Ich bin glücklich.", "Ich gehe einkaufen.", "Ich habe ein Buch."], answer: 0 },
+        { question: "Was machst du in deiner Freizeit?", options: ["Ich spiele Videospiele.", "Ich gehe ins Bett.", "Ich mag Gemüse.", "Ich arbeite viel."], answer: 0 },
+        // Shto këtu 80 pyetje të tjera...
+        // Pyetjet e mbetura
+        { question: "Was ist deine Lieblingsfarbe?", options: ["Ich mag blau.", "Ich bin müde.", "Ich habe einen Hund.", "Es ist heiß."], answer: 0 },
+        { question: "Wie oft gehst du ins Kino?", options: ["Einmal im Monat.", "Ich gehe einkaufen.", "Es ist spät.", "Ich habe keine Zeit."], answer: 0 },
+        { question: "Kannst du ein Instrument spielen?", options: ["Ja, ich spiele Klavier.", "Ich mag Filme.", "Es ist kalt.", "Ich habe keinen Bruder."], answer: 0 },
+        { question: "Was möchtest du essen?", options: ["Ich möchte Pizza essen.", "Ich bin glücklich.", "Ich arbeite viel.", "Ich gehe ins Kino."], answer: 0 },
+        { question: "Was ist dein Lieblingsfilm?", options: ["Ich mag Actionfilme.", "Es ist schön.", "Ich gehe nach Hause.", "Ich mag lesen."], answer: 0 },
+        { question: "Wie lange dauert der Film?", options: ["Der Film dauert zwei Stunden.", "Ich gehe ins Bett.", "Ich habe einen Hund.", "Es ist spät."], answer: 0 },
+        { question: "Was machst du morgen?", options: ["Ich gehe arbeiten.", "Ich mag Sport.", "Ich lese ein Buch.", "Ich bin müde."], answer: 0 },
+        { question: "Was für Musik hörst du gern?", options: ["Ich höre Popmusik.", "Es ist heiß.", "Ich gehe schwimmen.", "Ich habe keinen Hund."], answer: 0 },
+        { question: "Wie viele Bücher hast du?", options: ["Ich habe viele Bücher.", "Ich mag schwimmen.", "Ich bin 30 Jahre alt.", "Ich gehe zur Schule."], answer: 0 },
+        { question: "Was ist dein Traumurlaub?", options: ["Ich möchte nach Spanien reisen.", "Ich gehe einkaufen.", "Es ist kalt.", "Ich liebe es."], answer: 0 },
+        { question: "Wie oft gehst du joggen?", options: ["Ich gehe jeden Tag joggen.", "Ich bin müde.", "Ich habe einen Hund.", "Ich mag Kaffee."], answer: 0 },
+        { question: "Was ist dein Lieblingssport?", options: ["Ich mag Fußball.", "Ich gehe nach Hause.", "Es ist spät.", "Ich liebe schwimmen."], answer: 0 },
+        { question: "Was machst du, wenn es regnet?", options: ["Ich bleibe zu Hause.", "Ich gehe einkaufen.", "Ich mag Hunde.", "Ich bin müde."], answer: 0 },
+        { question: "Wie oft siehst du fern?", options: ["Ich sehe jeden Tag fern.", "Ich gehe zur Schule.", "Es ist heiß.", "Ich arbeite viel."], answer: 0 },
+        { question: "Was ist dein Lieblingsrestaurant?", options: ["Ich mag italienisches Essen.", "Ich bin Student.", "Ich liebe Filme.", "Es ist spät."], answer: 0 },
+        { question: "Wie oft machst du Urlaub?", options: ["Einmal im Jahr.", "Ich mag Musik.", "Ich gehe zur Schule.", "Ich bin glücklich."], answer: 0 },
+        { question: "Was ist dein Lieblingsspiel?", options: ["Ich spiele Schach.", "Ich bin müde.", "Ich habe einen Hund.", "Es ist kalt."], answer: 0 },
+        { question: "Wie oft besuchst du deine Familie?", options: ["Ich besuche sie oft.", "Ich mag Hunde.", "Ich gehe einkaufen.", "Es ist spät."], answer: 0 },
+        { question: "Was ist dein Lieblingsort?", options: ["Ich liebe den Park.", "Ich gehe nach Hause.", "Es ist schön.", "Ich mag Musik."], answer: 0 },
+        { question: "Wie oft gehst du essen?", options: ["Ich gehe einmal pro Woche essen.", "Ich bin müde.", "Ich liebe schwimmen.", "Es ist kalt."], answer: 0 },
+        { question: "Was machst du, wenn du Zeit hast?", options: ["Ich lese gerne.", "Ich gehe zur Schule.", "Es ist spät.", "Ich mag Musik."], answer: 0 },
+        { question: "Was ist dein Traumjob?", options: ["Ich möchte Arzt werden.", "Ich gehe ins Kino.", "Ich bin müde.", "Ich mag Hunde."], answer: 0 },
+        { question: "Was ist deine Lieblingsjahreszeit?", options: ["Ich mag den Sommer.", "Ich gehe nach Hause.", "Es ist kalt.", "Ich arbeite viel."], answer: 0 },
+        { question: "Wie oft machst du Sport?", options: ["Ich mache jeden Tag Sport.", "Ich gehe einkaufen.", "Es ist spät.", "Ich mag Musik."], answer: 0 },
+        { question: "Was für Bücher liest du?", options: ["Ich lese Krimis.", "Ich bin müde.", "Ich gehe zur Schule.", "Ich mag Sport."], answer: 0 },
+        { question: "Wie oft reist du?", options: ["Ich reise einmal im Jahr.", "Ich mag Filme.", "Es ist heiß.", "Ich bin Student."], answer: 0 },
+        { question: "Was ist dein Lieblingsgetränk?", options: ["Ich mag Kaffee.", "Ich gehe nach Hause.", "Es ist spät.", "Ich arbeite viel."], answer: 0 },
+        { question: "Wie oft gehst du schwimmen?", options: ["Ich gehe oft schwimmen.", "Ich bin müde.", "Ich gehe zur Schule.", "Ich mag Sport."], answer: 0 },
+        { question: "Was machst du am Freitagabend?", options: ["Ich gehe aus.", "Ich mag Musik.", "Ich bin müde.", "Es ist kalt."], answer: 0 },
+        { question: "Wie oft besuchst du deine Freunde?", options: ["Ich besuche sie oft.", "Ich gehe einkaufen.", "Es ist spät.", "Ich habe einen Hund."], answer: 0 },
+        { question: "Was ist dein Lieblingskleidungsstück?", options: ["Ich mag meine Jeans.", "Ich gehe nach Hause.", "Es ist heiß.", "Ich bin müde."], answer: 0 },
+        { question: "Wie oft kaufst du ein?", options: ["Ich kaufe einmal pro Woche ein.", "Ich bin müde.", "Ich gehe zur Schule.", "Es ist kalt."], answer: 0 },
+        { question: "Was ist dein Lieblingsspielzeug?", options: ["Ich mag meine Puppe.", "Ich gehe nach Hause.", "Es ist spät.", "Ich liebe Filme."], answer: 0 },
+        { question: "Wie oft lernst du?", options: ["Ich lerne jeden Tag.", "Ich mag Hunde.", "Ich gehe einkaufen.", "Es ist heiß."], answer: 0 },
+        { question: "Was machst du nach der Schule?", options: ["Ich mache meine Hausaufgaben.", "Ich bin müde.", "Ich gehe zur Schule.", "Ich mag Musik."], answer: 0 },
+        { question: "Was ist dein Lieblingssachbuch?", options: ["Ich lese über Geschichte.", "Ich gehe nach Hause.", "Es ist spät.", "Ich mag Sport."], answer: 0 },
+        { question: "Wie oft besuchst du das Fitnessstudio?", options: ["Ich gehe dreimal pro Woche.", "Ich bin müde.", "Ich gehe zur Schule.", "Es ist heiß."], answer: 0 },
+        { question: "Was ist dein Lieblingsparfum?", options: ["Ich mag blumige Düfte.", "Ich gehe nach Hause.", "Es ist spät.", "Ich mag Musik."], answer: 0 },
+        { question: "Wie oft triffst du deine Nachbarn?", options: ["Ich treffe sie oft.", "Ich bin müde.", "Ich gehe einkaufen.", "Es ist kalt."], answer: 0 },
+        { question: "Was ist dein Lieblingsfest?", options: ["Ich mag Weihnachten.", "Ich gehe nach Hause.", "Es ist heiß.", "Ich liebe schwimmen."], answer: 0 },
+        { question: "Wie oft gehst du ins Theater?", options: ["Ich gehe einmal im Monat.", "Ich bin müde.", "Ich gehe zur Schule.", "Es ist spät."], answer: 0 },
+        { question: "Was machst du im Winter?", options: ["Ich mag Skifahren.", "Ich gehe nach Hause.", "Es ist heiß.", "Ich bin müde."], answer: 0 },
+        { question: "Was ist dein Lieblingstier?", options: ["Ich mag Hunde.", "Ich gehe nach Hause.", "Es ist spät.", "Ich liebe Filme."], answer: 0 },
+        { question: "Wie oft kochst du?", options: ["Ich koche jeden Tag.", "Ich bin müde.", "Ich gehe zur Schule.", "Es ist kalt."], answer: 0 },
+        { question: "Was ist dein Lieblingsplatz in der Stadt?", options: ["Ich mag den Park.", "Ich gehe nach Hause.", "Es ist spät.", "Ich liebe schwimmen."], answer: 0 },
+        { question: "Wie oft gehst du zum Arzt?", options: ["Ich gehe einmal im Jahr.", "Ich mag Hunde.", "Ich gehe einkaufen.", "Es ist heiß."], answer: 0 },
+        { question: "Was machst du, wenn du traurig bist?", options: ["Ich höre Musik.", "Ich gehe nach Hause.", "Es ist spät.", "Ich mag Filme."], answer: 0 },
+        { question: "Was ist dein Lieblingszitat?", options: ["Ich mag: 'Carpe Diem'.", "Ich bin müde.", "Ich gehe zur Schule.", "Es ist kalt."], answer: 0 },
+        { question: "Wie oft spielst du Brettspiele?", options: ["Ich spiele einmal pro Woche.", "Ich mag Hunde.", "Ich gehe einkaufen.", "Es ist heiß."], answer: 0 },
+        { question: "Was machst du am Sonntag?", options: ["Ich entspanne mich.", "Ich gehe nach Hause.", "Es ist spät.", "Ich liebe schwimmen."], answer: 0 },
+        { question: "Wie oft machst du einen Ausflug?", options: ["Ich mache einmal im Monat einen Ausflug.", "Ich bin müde.", "Ich gehe zur Schule.", "Es ist kalt."], answer: 0 },
+        { question: "Was ist dein Lieblingsort in der Natur?", options: ["Ich liebe den Wald.", "Ich gehe nach Hause.", "Es ist spät.", "Ich mag Filme."], answer: 0 },
+        { question: "Wie oft machst du Yoga?", options: ["Ich mache jeden Morgen Yoga.", "Ich bin müde.", "Ich gehe zur Schule.", "Es ist heiß."], answer: 0 },
+        { question: "Was machst du an einem Feiertag?", options: ["Ich feiere mit meiner Familie.", "Ich gehe nach Hause.", "Es ist spät.", "Ich mag Hunde."], answer: 0 },
+        { question: "Wie oft besuchst du ein Konzert?", options: ["Ich gehe einmal im Jahr zu einem Konzert.", "Ich bin müde.", "Ich gehe zur Schule.", "Es ist kalt."], answer: 0 },
+        { question: "Was ist dein Lieblingsessen?", options: ["Ich mag Spaghetti.", "Ich gehe nach Hause.", "Es ist spät.", "Ich liebe schwimmen."], answer: 0 },
+        { question: "Wie oft machst du einen Roadtrip?", options: ["Ich mache einmal im Jahr einen Roadtrip.", "Ich bin müde.", "Ich gehe zur Schule.", "Es ist heiß."], answer: 0 },
+        { question: "Was ist dein Lieblingsgetränk?", options: ["Ich liebe Tee.", "Ich gehe nach Hause.", "Es ist spät.", "Ich mag Hunde."], answer: 0 },
+        { question: "Wie oft gehst du in den Zoo?", options: ["Ich gehe einmal im Jahr in den Zoo.", "Ich bin müde.", "Ich gehe zur Schule.", "Es ist kalt."], answer: 0 },
+        { question: "Was ist dein Lieblingsreiseziel?", options: ["Ich liebe Italien.", "Ich gehe nach Hause.", "Es ist spät.", "Ich liebe schwimmen."], answer: 0 },
+        { question: "Wie oft machst du eine Pause?", options: ["Ich mache regelmäßig Pausen.", "Ich bin müde.", "Ich gehe zur Schule.", "Es ist heiß."], answer: 0 },
+        { question: "Was ist dein Lieblingsspielzeug?", options: ["Ich mag meine Puppe.", "Ich gehe nach Hause.", "Es ist spät.", "Ich liebe Filme."], answer: 0 },
+        { question: "Wie oft gehst du ins Fitnessstudio?", options: ["Ich gehe dreimal pro Woche.", "Ich bin müde.", "Ich gehe zur Schule.", "Es ist kalt."], answer: 0 },
+        { question: "Was ist dein Lieblingskleidungsstück?", options: ["Ich mag meine Jeans.", "Ich gehe nach Hause.", "Es ist heiß.", "Ich bin müde."], answer: 0 },
+        { question: "Wie oft kaufst du ein?", options: ["Ich kaufe einmal pro Woche ein.", "Ich bin müde.", "Ich gehe zur Schule.", "Es ist kalt."], answer: 0 },
+        { question: "Was ist dein Lieblingsfest?", options: ["Ich mag Weihnachten.", "Ich gehe nach Hause.", "Es ist heiß.", "Ich liebe schwimmen."], answer: 0 },
+        { question: "Wie oft gehst du ins Theater?", options: ["Ich gehe einmal im Monat.", "Ich bin müde.", "Ich gehe zur Schule.", "Es ist kalt."], answer: 0 },
+        { question: "Was machst du im Winter?", options: ["Ich mag Skifahren.", "Ich gehe nach Hause.", "Es ist heiß.", "Ich bin müde."], answer: 0 },
+        { question: "Was ist dein Lieblingstier?", options: ["Ich mag Hunde.", "Ich gehe nach Hause.", "Es ist spät.", "Ich liebe Filme."], answer: 0 },
+        { question: "Wie oft kochst du?", options: ["Ich koche jeden Tag.", "Ich bin müde.", "Ich gehe zur Schule.", "Es ist kalt."], answer: 0 },
+        { question: "Was ist dein Lieblingsplatz in der Stadt?", options: ["Ich mag den Park.", "Ich gehe nach Hause.", "Es ist spät.", "Ich liebe schwimmen."], answer: 0 },
+        { question: "Wie oft gehst du zum Arzt?", options: ["Ich gehe einmal im Jahr.", "Ich mag Hunde.", "Ich gehe einkaufen.", "Es ist heiß."], answer: 0 },
+        { question: "Was machst du, wenn du traurig bist?", options: ["Ich höre Musik.", "Ich gehe nach Hause.", "Es ist spät.", "Ich mag Filme."], answer: 0 },
+        { question: "Was ist dein Lieblingszitat?", options: ["Ich mag: 'Carpe Diem'.", "Ich bin müde.", "Ich gehe zur Schule.", "Es është e ftohtë."], answer: 0 },
+        { question: "Wie oft spielst du Brettspiele?", options: ["Ich spiele einmal pro Woche.", "Ich mag Hunde.", "Ich gehe nach shtëpi.", "Es është e ngrohtë."], answer: 0 },
+        { question: "Was machst du am Sonntag?", options: ["Ich entspanne mich.", "Ich shkoj në shtëpi.", "Es ist spät.", "Ich love schwimmen."], answer: 0 },
+        { question: "Wie oft machst du einen Ausflug?", options: ["Ich mache einmal im Monat einen Ausflug.", "Ich jam lodhur.", "Ich shkoj në shkollë.", "Es ist kalt."], answer: 0 },
+        { question: "Was ist dein Lieblingsort in der natyrë?", options: ["Ich liebe den Wald.", "Ich shkoj në shtëpi.", "Es ist spät.", "Ich dua filma."], answer: 0 },
+        { question: "Wie oft bëj yoga?", options: ["Ich mache jeden Morgen Yoga.", "Ich jam lodhur.", "Ich shkoj në shkollë.", "Es është e ngrohtë."], answer: 0 },
+        { question: "Was machst du an einem Feiertag?", options: ["Ich feiere mit meiner Familie.", "Ich shkoj në shtëpi.", "Es ist spät.", "Ich jam lodhur."], answer: 0 },
+        { question: "Wie oft viziton një koncert?", options: ["Ich gehe einmal im Jahr zu einem Konzert.", "Ich jam lodhur.", "Ich shkoj në shkollë.", "Es ist kalt."], answer: 0 },
+        { question: "Was ist dein Lieblingsessen?", options: ["Ich mag Spaghetti.", "Ich shkoj në shtëpi.", "Es ist spät.", "Ich dua filma."], answer: 0 },
+        { question: "Wie oft bëj një udhëtim në rrugë?", options: ["Ich mache einmal im Jahr einen Roadtrip.", "Ich jam lodhur.", "Ich shkoj në shkollë.", "Es është e ngrohtë."], answer: 0 },
+        { question: "Was ist dein Lieblingsdrinks?", options: ["Ich liebe Tee.", "Ich shkoj në shtëpi.", "Es ist spät.", "Ich kam dogs."], answer: 0 },
+        { question: "Wie oft shkoj në zoologji?", options: ["Ich gehe einmal im Jahr in den Zoo.", "Ich jam lodhur.", "Ich shkoj në shkollë.", "Es është e ngrohtë."], answer: 0 },
+        { question: "Was ist dein Lieblingsdestinacion?", options: ["Ich liebe Italien.", "Ich shkoj në shtëpi.", "Es ist spät.", "Ich dua filma."], answer: 0 },
+        { question: "Wie oft bëj një pushim?", options: ["Ich mache regelmäßig Pausen.", "Ich jam lodhur.", "Ich shkoj në shkollë.", "Es është e ngrohtë."], answer: 0 },
+    ];
+
+    let score = 0;
+    const totalQuestions = quizData.length;
+    let timeRemaining = 15 * 60; // 15 minutes in seconds
+    const timerElement = document.getElementById('timer');
+    const quizContainer = document.getElementById('quizContainer');
+
+    function startQuiz() {
+        quizData.forEach((quizItem, index) => {
+            const section = document.createElement('div');
+            section.classList.add('section');
+            section.innerHTML = `<p>${index + 1}. ${quizItem.question}</p>`;
+            const ul = document.createElement('ul');
+            ul.classList.add('options');
+            quizItem.options.forEach((option, i) => {
+                ul.innerHTML += `<li><input type="radio" name="q${index}" value="${i}"> ${option}</li>`;
+            });
+            section.appendChild(ul);
+            quizContainer.appendChild(section);
+        });
+        startTimer();
+    }
+
+    function startTimer() {
+        const interval = setInterval(() => {
+            if (timeRemaining <= 0) {
+                clearInterval(interval);
+                submitAnswers();
+            }
+            const minutes = Math.floor(timeRemaining / 60);
+            const seconds = timeRemaining % 60;
+            timerElement.innerHTML = `${String(minutes).padStart(2, '0')}:${String(seconds).padStart(2, '0')}`;
+            timeRemaining--;
+        }, 1000);
+    }
+
+    function submitAnswers() {
+        quizData.forEach((quizItem, index) => {
+            const answer = document.querySelector(`input[name="q${index}"]:checked`);
+            if (answer && parseInt(answer.value) === quizItem.answer) {
+                score++;
+            }
+        });
+
+        const percentage = (score / totalQuestions) * 100;
+        let level = '';
+        if (percentage >= 90) level = 'C2';
+        else if (percentage >= 75) level = 'C1';
+        else if (percentage >= 60) level = 'B2';
+        else if (percentage >= 50) level = 'B1';
+        else if (percentage >= 30) level = 'A2';
+        else level = 'A1';
+
+        alert(`Deine Punktzahl: ${score} von ${totalQuestions}\nDu bist auf Niveau: ${level}`);
+    }
+
+    startQuiz();
+</script>
+
+</body>
+</html>
